@@ -82,6 +82,7 @@ If you experience any errors while trying to install kickstart, run `:checkhealt
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+
 vim.g.mapleader = '<space>'
 vim.g.maplocalleader ='<space>'
 
