@@ -8,6 +8,14 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- keymap for custom navigation
+-- Remap Ctrl-d to scroll down and then zz
+vim.api.nvim_set_keymap('n', '<C-d>', '<C-d>zz', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>j', '<C-d>zz', { desc = 'Go half a page DOWN', noremap = true, silent = true })
+-- Remap Ctrl-u to scroll up and then zz
+vim.api.nvim_set_keymap('n', '<leader>k', '<C-u>zz', { desc = 'half a page UP', noremap = true, silent = true })
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
