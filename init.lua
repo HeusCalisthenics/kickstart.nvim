@@ -1,28 +1,9 @@
---[[
-
-What is Kickstart?
-
-  Kickstart.nvim is *not* a distribution.
-
-      - https://learnxinyminutes.com/docs/lua/
-
-    reference for how Neovim integrates Lua.
-    - :help lua-guide
-    - (or HTML version): https://neovim.io/doc/user/lua-guide.html
-
-
-    MOST IMPORTANTLY, we provide a keymap "<space>sh" to [s]earch the [h]elp documentation,
-    which is very useful when you're not exactly sure of what you're looking for.
-
-If you experience any errors while trying to install kickstart, run `:checkhealth` for more info.
-
-
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
-vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.keymap.set('n', '<Space>', '<Nop>', { silent = true, remap = false })
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
@@ -44,8 +25,15 @@ vim.o.mouse = 'a'
 -- Don't show the mode, since it's already in the status line
 vim.o.showmode = false
 
+-- Make background transparent
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'NormalFloat', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'none' })
+vim.api.nvim_set_hl(0, 'LineNr', { bg = 'none' })
+
 -- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
+--  Schedule the setting after `UiEnter` because it c vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
+
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
@@ -277,7 +265,7 @@ require('lazy').setup({
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group = '[S]earch' },
+        { '<leader>s', group = '[S]earch in Telescope' },
         { '<leader>t', group = '[T]oggle' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
@@ -359,7 +347,7 @@ require('lazy').setup({
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp in Telescope' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
@@ -819,6 +807,7 @@ require('lazy').setup({
     config = function()
       ---@diagnostic disable-next-line: missing-fields
       require('tokyonight').setup {
+        transparent = true,
         styles = {
           comments = { italic = false }, -- Disable italics in comments
         },
